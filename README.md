@@ -31,7 +31,7 @@ bitcore-node-dash start
 
 This will create a directory with configuration files for your node and install the necessary dependencies.
 
-Please note that [Dash Core v0.12.1.x](https://github.com/dashpay/dash/tree/v0.12.1.x) will be downloaded automatically. Once completed the dashd binary should be placed into the &lt;dash-data-dir&gt; folder specified during node creation.
+Please note that [Dash Core](https://github.com/dashpay/dash/tree/master) need to be installed first.
 
 For more information about (and developing) services, please see the [Service Documentation](docs/services.md).
 
