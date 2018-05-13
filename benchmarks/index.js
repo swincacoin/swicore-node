@@ -1,7 +1,7 @@
 'use strict';
 
 var benchmark = require('benchmark');
-var bitcoin = require('bitcoin');
+var dashdRPC = require('@dashevo/dashd-rpc');
 var async = require('async');
 var maxTime = 20;
 
@@ -50,7 +50,7 @@ dashd.on('ready', function() {
 
   console.log('Dash Core ready');
 
-  var client = new dash.Client({
+  var client = new dashdRPC({
     host: 'localhost',
     port: 18332,
     user: 'dash',
