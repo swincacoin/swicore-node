@@ -7,8 +7,8 @@ var index = require('..');
 var log = index.log;
 
 var chai = require('chai');
-var bitcore = require('bitcore-lib-dash');
-var BN = bitcore.crypto.BN;
+var dashcore = require('@dashevo/dashcore-lib');
+var BN = dashcore.crypto.BN;
 var async = require('async');
 var rimraf = require('rimraf');
 var bitcoind;
@@ -23,8 +23,8 @@ var blockHashes = [];
 var utxos;
 var client;
 var coinbasePrivateKey;
-var privateKey = bitcore.PrivateKey();
-var destKey = bitcore.PrivateKey();
+var privateKey = dashcore.PrivateKey();
+var destKey = dashcore.PrivateKey();
 
 describe('Dashd Functionality', function() {
 
@@ -32,8 +32,8 @@ describe('Dashd Functionality', function() {
     this.timeout(200000);
 
     // Add the regtest network
-    bitcore.Networks.enableRegtest();
-    var regtestNetwork = bitcore.Networks.get('regtest');
+    dashcore.Networks.enableRegtest();
+    var regtestNetwork = dashcore.Networks.get('regtest');
 
     var datadir = __dirname + '/data';
 
@@ -65,7 +65,7 @@ describe('Dashd Functionality', function() {
       bitcoind.start(function() {
         log.info('Bitcoind started');
 
-        client = new BitcoinRPC({
+        client = new DashdRPC({
           protocol: 'http',
           host: '127.0.0.1',
           port: 30331,
@@ -212,7 +212,7 @@ describe('Dashd Functionality', function() {
     [0,1,2,3,4,5,6,7,8,9].forEach(function(i) {
       it('for tx ' + i, function(done) {
         var txhex = transactionData[i];
-        var tx = new bitcore.Transaction();
+        var tx = new dashcore.Transaction();
         tx.fromString(txhex);
         bitcoind.getTransaction(tx.hash, function(err, response) {
           if (err) {
@@ -237,7 +237,7 @@ describe('Dashd Functionality', function() {
     [0,1,2,3,4,5,6,7,8,9].forEach(function(i) {
       it('for tx ' + i, function(done) {
         var txhex = transactionData[i];
-        var tx = new bitcore.Transaction();
+        var tx = new dashcore.Transaction();
         tx.fromString(txhex);
         bitcoind.getRawTransaction(tx.hash, function(err, response) {
           if (err) {
@@ -328,11 +328,11 @@ describe('Dashd Functionality', function() {
     it('will not error and return the transaction hash', function(done) {
 
       // create and sign the transaction
-      var tx = bitcore.Transaction();
+      var tx = dashcore.Transaction();
       tx.from(utxos[0]);
       tx.change(privateKey.toAddress());
       tx.to(destKey.toAddress(), utxos[0].amount * 1e8 - 1000);
-      tx.sign(bitcore.PrivateKey.fromWIF(utxos[0].privateKeyWIF));
+      tx.sign(dashcore.PrivateKey.fromWIF(utxos[0].privateKeyWIF));
 
       // test sending the transaction
       bitcoind.sendTransaction(tx.serialize(), function(err, hash) {
@@ -346,7 +346,7 @@ describe('Dashd Functionality', function() {
     });
 
     it('will throw an error if an unsigned transaction is sent', function(done) {
-      var tx = bitcore.Transaction();
+      var tx = dashcore.Transaction();
       tx.from(utxos[1]);
       tx.change(privateKey.toAddress());
       tx.to(destKey.toAddress(), utxos[1].amount * 1e8 - 1000);
@@ -374,11 +374,11 @@ describe('Dashd Functionality', function() {
     });
 
     it('will emit "tx" events', function(done) {
-      var tx = bitcore.Transaction();
+      var tx = dashcore.Transaction();
       tx.from(utxos[2]);
       tx.change(privateKey.toAddress());
       tx.to(destKey.toAddress(), utxos[2].amount * 1e8 - 1000);
-      tx.sign(bitcore.PrivateKey.fromWIF(utxos[2].privateKeyWIF));
+      tx.sign(dashcore.PrivateKey.fromWIF(utxos[2].privateKeyWIF));
 
       var serialized = tx.serialize();
 
