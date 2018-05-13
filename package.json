@@ -44,8 +44,8 @@
   ],
   "dependencies": {
     "async": "^1.3.0",
-    "bitcoind-rpc-dash": "^1.0.1",
     "bitcore-lib-dash": "^0.15.3",
+    "@dashevo/dashd-rpc": "^1.0.1",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
     "commander": "^2.8.1",

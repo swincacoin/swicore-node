@@ -21,7 +21,7 @@ var bitcoind;
 var should = chai.should();
 var assert = chai.assert;
 var sinon = require('sinon');
-var BitcoinRPC = require('bitcoind-rpc-dash');
+var DashdRPC = require('@dashevo/dashd-rpc');
 var transactionData = [];
 var blockHashes = [];
 var txs = [];
@@ -71,7 +71,7 @@ describe('P2P Functionality', function() {
         }
         log.info('Bitcoind started');
 
-        client = new BitcoinRPC({
+        client = new DashdRPC({
           protocol: 'http',
           host: '127.0.0.1',
           port: 30331,

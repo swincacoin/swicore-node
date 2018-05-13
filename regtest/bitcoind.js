@@ -17,7 +17,7 @@ var bitcoind;
 var should = chai.should();
 var assert = chai.assert;
 var sinon = require('sinon');
-var BitcoinRPC = require('bitcoind-rpc-dash');
+var DashdRPC = require('@dashevo/dashd-rpc');
 var transactionData = [];
 var blockHashes = [];
 var utxos;
@@ -26,7 +26,7 @@ var coinbasePrivateKey;
 var privateKey = bitcore.PrivateKey();
 var destKey = bitcore.PrivateKey();
 
-describe('Bitcoind Functionality', function() {
+describe('Dashd Functionality', function() {
 
   before(function(done) {
     this.timeout(200000);

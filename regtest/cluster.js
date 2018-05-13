@@ -4,7 +4,7 @@ var path = require('path');
 var async = require('async');
 var spawn = require('child_process').spawn;
 
-var BitcoinRPC = require('bitcoind-rpc-dash');
+var DashdRPC = require('@dashevo/dashd-rpc');
 var rimraf = require('rimraf');
 var bitcore = require('bitcore-lib-dash');
 var chai = require('chai');
@@ -67,7 +67,7 @@ describe('Bitcoin Cluster', function() {
 
         var process = spawn(execPath, opts, {stdio: 'inherit'});
 
-        var client = new BitcoinRPC({
+        var client = new DashdRPC({
           protocol: 'http',
           host: '127.0.0.1',
           port: nodeConf.rpcport,

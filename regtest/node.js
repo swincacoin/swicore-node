@@ -15,7 +15,7 @@ var node;
 
 var should = chai.should();
 
-var BitcoinRPC = require('bitcoind-rpc-dash');
+var DashdRPC = require('@dashevo/dashd-rpc');
 var index = require('..');
 var Transaction = bitcore.Transaction;
 var BitcoreNode = index.Node;
@@ -74,7 +74,7 @@ describe('Node Functionality', function() {
           return done(err);
         }
 
-        client = new BitcoinRPC({
+        client = new DashdRPC({
           protocol: 'http',
           host: '127.0.0.1',
           port: 30331,
