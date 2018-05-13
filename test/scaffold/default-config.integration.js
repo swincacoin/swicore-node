@@ -13,11 +13,11 @@ describe('#defaultConfig', function() {
       network: 'livenet',
       port: 3001,
       services: [
-        'bitcoind',
+        'dashd',
         'web'
       ],
       servicesConfig: {
-        bitcoind: {
+        dashd: {
           spawn: {
             datadir: process.env.HOME + '/.bitcore/data',
             exec: expectedExecPath
@@ -45,24 +45,24 @@ describe('#defaultConfig', function() {
     info.path.should.equal(home + '/.bitcore');
     info.config.network.should.equal('livenet');
     info.config.port.should.equal(3001);
-    info.config.services.should.deep.equal(['bitcoind', 'web']);
-    var bitcoind = info.config.servicesConfig.bitcoind;
-    should.exist(bitcoind);
-    bitcoind.spawn.datadir.should.equal(home + '/.bitcore/data');
-    bitcoind.spawn.exec.should.equal(expectedExecPath);
+    info.config.services.should.deep.equal(['dashd', 'web']);
+    var dashd = info.config.servicesConfig.dashd;
+    should.exist(dashd);
+    dashd.spawn.datadir.should.equal(home + '/.bitcore/data');
+    dashd.spawn.exec.should.equal(expectedExecPath);
   });
   it('will include additional services', function() {
     var config = JSON.stringify({
       network: 'livenet',
       port: 3001,
       services: [
-        'bitcoind',
+        'dashd',
         'web',
         'insight-api',
         'insight-ui'
       ],
       servicesConfig: {
-        bitcoind: {
+        dashd: {
           spawn: {
             datadir: process.env.HOME + '/.bitcore/data',
             exec: expectedExecPath
@@ -93,14 +93,14 @@ describe('#defaultConfig', function() {
     info.config.network.should.equal('livenet');
     info.config.port.should.equal(3001);
     info.config.services.should.deep.equal([
-      'bitcoind',
+      'dashd',
       'web',
       'insight-api',
       'insight-ui'
     ]);
-    var bitcoind = info.config.servicesConfig.bitcoind;
-    should.exist(bitcoind);
-    bitcoind.spawn.datadir.should.equal(home + '/.bitcore/data');
-    bitcoind.spawn.exec.should.equal(expectedExecPath);
+    var dashd = info.config.servicesConfig.dashd;
+    should.exist(dashd);
+    dashd.spawn.datadir.should.equal(home + '/.bitcore/data');
+    dashd.spawn.exec.should.equal(expectedExecPath);
   });
 });
