@@ -6,7 +6,7 @@ var sinon = require('sinon');
 var proxyquire = require('proxyquire');
 
 describe('#defaultConfig', function() {
-  var expectedExecPath = path.resolve(__dirname, process.env.HOME, './.bitcore/data/dashd');
+  var expectedExecPath = path.resolve(__dirname, process.env.HOME, './.dashcore/data/dashd');
 
   it('will return expected configuration', function() {
     var config = JSON.stringify({
@@ -19,7 +19,7 @@ describe('#defaultConfig', function() {
       servicesConfig: {
         dashd: {
           spawn: {
-            datadir: process.env.HOME + '/.bitcore/data',
+            datadir: process.env.HOME + '/.dashcore/data',
             exec: expectedExecPath
           }
         }
@@ -29,7 +29,7 @@ describe('#defaultConfig', function() {
       fs: {
         existsSync: sinon.stub().returns(false),
         writeFileSync: function(path, data) {
-          path.should.equal(process.env.HOME + '/.bitcore/bitcore-node-dash.json');
+          path.should.equal(process.env.HOME + '/.dashcore/dashcore-node.json');
           data.should.equal(config);
         },
         readFileSync: function() {
@@ -42,13 +42,13 @@ describe('#defaultConfig', function() {
     });
     var home = process.env.HOME;
     var info = defaultConfig();
-    info.path.should.equal(home + '/.bitcore');
+    info.path.should.equal(home + '/.dashcore');
     info.config.network.should.equal('livenet');
     info.config.port.should.equal(3001);
     info.config.services.should.deep.equal(['dashd', 'web']);
     var dashd = info.config.servicesConfig.dashd;
     should.exist(dashd);
-    dashd.spawn.datadir.should.equal(home + '/.bitcore/data');
+    dashd.spawn.datadir.should.equal(home + '/.dashcore/data');
     dashd.spawn.exec.should.equal(expectedExecPath);
   });
   it('will include additional services', function() {
@@ -64,7 +64,7 @@ describe('#defaultConfig', function() {
       servicesConfig: {
         dashd: {
           spawn: {
-            datadir: process.env.HOME + '/.bitcore/data',
+            datadir: process.env.HOME + '/.dashcore/data',
             exec: expectedExecPath
           }
         }
@@ -74,7 +74,7 @@ describe('#defaultConfig', function() {
       fs: {
         existsSync: sinon.stub().returns(false),
         writeFileSync: function(path, data) {
-          path.should.equal(process.env.HOME + '/.bitcore/bitcore-node-dash.json');
+          path.should.equal(process.env.HOME + '/.dashcore/dashcore-node.json');
           data.should.equal(config);
         },
         readFileSync: function() {
@@ -89,7 +89,7 @@ describe('#defaultConfig', function() {
     var info = defaultConfig({
       additionalServices: ['insight-api', 'insight-ui']
     });
-    info.path.should.equal(home + '/.bitcore');
+    info.path.should.equal(home + '/.dashcore');
     info.config.network.should.equal('livenet');
     info.config.port.should.equal(3001);
     info.config.services.should.deep.equal([
@@ -100,7 +100,7 @@ describe('#defaultConfig', function() {
     ]);
     var dashd = info.config.servicesConfig.dashd;
     should.exist(dashd);
-    dashd.spawn.datadir.should.equal(home + '/.bitcore/data');
+    dashd.spawn.datadir.should.equal(home + '/.dashcore/data');
     dashd.spawn.exec.should.equal(expectedExecPath);
   });
 });

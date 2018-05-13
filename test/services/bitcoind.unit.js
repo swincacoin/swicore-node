@@ -1762,7 +1762,7 @@ describe('Dash Service', function() {
         done();
       });
     });
-    it('will give error from stopSpawnedBitcoin', function() {
+    it('will give error from stopSpawnedDash', function() {
       var dashd = new DashService(baseConfig);
       dashd._loadSpawnConfiguration = sinon.stub();
       dashd._stopSpawnedDash = sinon.stub().callsArgWith(0, new Error('test'));
@@ -2109,7 +2109,7 @@ describe('Dash Service', function() {
       dashd.options = {};
       dashd.start(function(err) {
         err.should.be.instanceof(Error);
-        err.message.should.match(/Bitcoin configuration options/);
+        err.message.should.match(/Dash configuration options/);
       });
       done();
     });

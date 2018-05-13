@@ -33,7 +33,7 @@ describe('#create', function() {
       if (err) {
         throw err;
       }
-      mkdirp(testDir + '/.bitcoin', function(err) {
+      mkdirp(testDir + '/.dash', function(err) {
         if (err) {
           throw err;
         }
@@ -64,7 +64,7 @@ describe('#create', function() {
         throw err;
       }
 
-      var configPath = testDir + '/mynode/bitcore-node-dash.json';
+      var configPath = testDir + '/mynode/dashcore-node.json';
       var packagePath = testDir + '/mynode/package.json';
 
       should.equal(fs.existsSync(configPath), true);
@@ -139,7 +139,7 @@ describe('#create', function() {
       dirname: 'mynode4',
       name: 'My Node 4',
       isGlobal: false,
-      datadir: '../.bitcoin'
+      datadir: '../.dash'
     }, function(err) {
       should.exist(err);
       err.message.should.equal('There was an error installing dependencies.');
