@@ -3,10 +3,33 @@ Dashcore Node
 
 A Dash full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Dash Core (dashd) v0.12.1.x](https://github.com/dashpay/dash/tree/v0.12.1.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
 
-## Install
+## Usages
+
+### As a standalone server
 
 ```bash
-npm install -g @dashevo/dashcore-node
+git clone https://github.com/dashevo/dashcore-node
+cd dashcore-node
+./bin/dashcore-node start
+```
+
+### As a library
+
+```bash
+npm install @dashevo/dashcore-node
+```
+
+```javascript
+const dashcore = require('@dashevo/dashcore-node');
+const config = require('./dashcore-node.json');
+
+let node = dashcore.scaffold.start({ path: "", config: config });
+node.on('ready', function() {
+    //Dash core started
+    dashd.on('tx', function(txData) {
+        let tx = new dashcore.lib.Transaction(txData);
+    });
+});
 ```
 
 ## Prerequisites
@@ -31,7 +54,7 @@ dashcore-node start
 
 This will create a directory with configuration files for your node and install the necessary dependencies.
 
-Please note that [Dash Core](https://github.com/dashpay/dash/tree/master) need to be installed first.
+Please note that [Dash Core](https://github.com/dashpay/dash/tree/master) needs to be installed first.
 
 For more information about (and developing) services, please see the [Service Documentation](docs/services.md).
 
@@ -47,7 +70,7 @@ There are several add-on services available to extend the functionality of Bitco
 
 - [Upgrade Notes](docs/upgrade.md)
 - [Services](docs/services.md)
-  - [Bitcoind](docs/services/bitcoind.md) - Interface to Bitcoin Core
+  - [Dashd](docs/services/dashd.md) - Interface to Dash Core
   - [Web](docs/services/web.md) - Creates an express application over which services can expose their web/API content
 - [Development Environment](docs/development.md) - Guide for setting up a development environment
 - [Node](docs/node.md) - Details on the node constructor
