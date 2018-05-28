@@ -18,10 +18,13 @@ describe('#defaultConfig', function() {
       ],
       servicesConfig: {
         dashd: {
-          spawn: {
-            datadir: process.env.HOME + '/.dashcore/data',
-            exec: expectedExecPath
-          }
+          connect: [{
+            rpchost: '127.0.0.1',
+            rpcport: 9998,
+            rpcuser: 'dash',
+            rpcpassword: 'local321',
+            zmqpubrawtx: 'tcp://127.0.0.1:28332'
+           }]
         }
       }
     }, null, 2);
@@ -48,8 +51,6 @@ describe('#defaultConfig', function() {
     info.config.services.should.deep.equal(['dashd', 'web']);
     var dashd = info.config.servicesConfig.dashd;
     should.exist(dashd);
-    dashd.spawn.datadir.should.equal(home + '/.dashcore/data');
-    dashd.spawn.exec.should.equal(expectedExecPath);
   });
   it('will include additional services', function() {
     var config = JSON.stringify({
@@ -63,10 +64,13 @@ describe('#defaultConfig', function() {
       ],
       servicesConfig: {
         dashd: {
-          spawn: {
-            datadir: process.env.HOME + '/.dashcore/data',
-            exec: expectedExecPath
-          }
+          connect: [{
+            rpchost: '127.0.0.1',
+            rpcport: 9998,
+            rpcuser: 'dash',
+            rpcpassword: 'local321',
+            zmqpubrawtx: 'tcp://127.0.0.1:28332'
+          }]
         }
       }
     }, null, 2);
@@ -100,7 +104,5 @@ describe('#defaultConfig', function() {
     ]);
     var dashd = info.config.servicesConfig.dashd;
     should.exist(dashd);
-    dashd.spawn.datadir.should.equal(home + '/.dashcore/data');
-    dashd.spawn.exec.should.equal(expectedExecPath);
   });
 });
