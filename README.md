@@ -13,6 +13,14 @@ cd dashcore-node
 ./bin/dashcore-node start
 ```
 
+When running the start command, it will seek for a .dashcore folder with a dashcore-node.json conf file.
+If it doesn't exist, it will create it, with basic task to connect to dashd.
+
+Some plugins are available :
+
+- Insight-API :
+- Insight-UI (require insight-API) :
+
 ### As a library
 
 ```bash
@@ -76,6 +84,31 @@ There are several add-on services available to extend the functionality of Bitco
 - [Node](docs/node.md) - Details on the node constructor
 - [Bus](docs/bus.md) - Overview of the event bus constructor
 - [Release Process](docs/release.md) - Information about verifying a release and the release process.
+
+
+## Setting up dev environment (with Insight)
+
+Prerequisite : Having a dashd node already runing `dashd --daemon`.
+
+Dashcore-node : `git clone https://github.com/dashevo/dashcore-node -b develop`
+Insight-api (optional) : `git clone https://github.com/dashevo/insight-api -b develop`
+Insight-UI (optional) : `git clone https://github.com/dashevo/insight-ui -b develop`
+
+Install them :
+```
+cd dashcore-node && npm install \
+ && cd ../insight-ui && npm install \
+ && cd ../insight-api && npm install && cd ..
+```
+
+Symbolic linking in parent folder :
+```
+npm link ../insight-api
+npm link ../insight-ui
+```
+
+Start with `./bin/dashcore-node start` to first generate a ~/.dashcore/dashcore-node.json file.
+Append this file with `"@dashevo/insight-ui"` and `"@dashevo/insight-api"` in the services array.
 
 ## Contributing
 
