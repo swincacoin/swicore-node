@@ -18,8 +18,15 @@ If it doesn't exist, it will create it, with basic task to connect to dashd.
 
 Some plugins are available :
 
-- Insight-API :
-- Insight-UI (require insight-API) :
+- Insight-API : `./bin/dashcore-node addservice @dashevo/insight-api
+- Insight-UI : `./bin/dashcore-node addservice @dashevo/insight-ui`
+
+You also might want to add these index to your dash.conf file :
+```
+-addressindex
+-timestampindex
+-spentindex
+```
 
 ### As a library
 
