@@ -10,6 +10,7 @@ A Dash full node for building applications and services with Node.js. A node is 
 ```bash
 git clone https://github.com/dashevo/dashcore-node
 cd dashcore-node
+npm install
 ./bin/dashcore-node start
 ```
 
@@ -18,7 +19,7 @@ If it doesn't exist, it will create it, with basic task to connect to dashd.
 
 Some plugins are available :
 
-- Insight-API : `./bin/dashcore-node addservice @dashevo/insight-api
+- Insight-API : `./bin/dashcore-node addservice @dashevo/insight-api`
 - Insight-UI : `./bin/dashcore-node addservice @dashevo/insight-ui`
 
 You also might want to add these index to your dash.conf file :
