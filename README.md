@@ -1,7 +1,7 @@
 Dashcore Node
 ============
 
-A Dash full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Dash Core (dashd) v0.12.2.x](https://github.com/dashpay/dash/tree/v0.12.2.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
+A Dash full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Dash Core (dashd) v0.12.3](https://github.com/dashpay/dash/tree/v0.12.3.x) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
 
 ## Usages
 
@@ -50,7 +50,7 @@ node.on('ready', function() {
 
 ## Prerequisites
 
-- Dash Core (dashd) (v0.12.2.x) with support for additional indexing *(see above)*
+- Dash Core (dashd) (v0.12.3.x) with support for additional indexing *(see above)*
 - Node.js v6+
 - ZeroMQ *(libzmq3-dev for Ubuntu/Debian or zeromq on OSX)*
 - ~20GB of disk storage
