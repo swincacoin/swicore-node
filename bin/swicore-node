@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var swicore = require('../lib/cli/swicore');
+swicore();
