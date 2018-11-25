@@ -44,7 +44,7 @@
   ],
   "dependencies": {
     "@swincacoin/swicore-lib": "swincacoin/swicore-lib",
-    "@swincacoin/swid-rpc": "swincacoin/swicore-rpc",
+    "@swincacoin/swid-rpc": "swincacoin/swid-rpc",
     "async": "^1.3.0",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",
