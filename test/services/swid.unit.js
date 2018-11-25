@@ -786,7 +786,7 @@ describe('Swi Service', function() {
         }
       };
       var swid = new SwiService(config);
-      swid._getDefaultConf().rpcport.should.equal(9998);
+      swid._getDefaultConf().rpcport.should.equal(46923);
     });
     it('will get default rpc port for testnet', function() {
       var config = {
